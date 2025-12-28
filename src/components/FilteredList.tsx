@@ -1,9 +1,11 @@
 import { Assets, colors, ListRow } from 'tosslib';
 import { useData } from '../hooks/useData.tsx';
 import { getLocaleString } from '../utils/formatters.ts';
+import { useSelectedProduct } from '../hooks/SelectedProductContext.tsx';
 
 function FilteredList() {
   const { data } = useData();
+  const { selectedProduct, toggleSelectedProduct } = useSelectedProduct();
   if (!data) {
     return <ListRow contents={<ListRow.Texts type="1RowTypeA" top="상품이 없습니다" />} />;
   }
@@ -21,8 +23,14 @@ function FilteredList() {
             bottomProps={{ fontSize: 13, color: colors.grey600 }}
           />
         }
-        right={<Assets.Icon name="icon-check-circle-green" />}
-        onClick={() => {}}
+        right={
+          selectedProduct.some(selected => selected.id === product.id) ? (
+            <Assets.Icon name="icon-check-circle-green" />
+          ) : null
+        }
+        onClick={() => {
+          toggleSelectedProduct(product.id);
+        }}
       />
     </>
   ));
