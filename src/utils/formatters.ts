@@ -1,6 +1,9 @@
 /** 양의 정수 문자를 3자리 마다 콤마로 구분합니다. */
 export function getLocaleString(num: number | string) {
   if (typeof num === 'string') {
+    if (num === '') {
+      return '';
+    }
     num = toNumber(num);
   }
   return num.toLocaleString('ko-KR');
