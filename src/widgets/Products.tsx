@@ -1,10 +1,13 @@
 import FilteredList from '../components/FilteredList.tsx';
 import { Spacing } from 'tosslib';
+import { Suspense } from 'react';
 
 function Products() {
   return (
     <>
-      <FilteredList />
+      <Suspense fallback={null}>
+        <FilteredList />
+      </Suspense>
       <Spacing size={8} />
     </>
   );

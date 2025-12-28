@@ -1,6 +1,11 @@
 import { Assets, colors, ListRow } from 'tosslib';
+import { useData } from '../hooks/useData.tsx';
 
 function FilteredList() {
+  const { data } = useData();
+  if (!data) {
+    return <ListRow contents={<ListRow.Texts type="1RowTypeA" top="상품을 불러오는 중" />} />;
+  }
   return (
     <>
       <ListRow

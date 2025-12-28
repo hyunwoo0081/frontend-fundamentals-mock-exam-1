@@ -1,8 +1,7 @@
-import { Border, NavigationBar, Spacing, Tab } from 'tosslib';
+import { Border, NavigationBar, Spacing } from 'tosslib';
 import InputForm from '../components/InputForm.tsx';
-import Result from '../widgets/Result.tsx';
-import Products from '../widgets/Products.tsx';
 import { InputsProvider } from '../hooks/InputsContext.tsx';
+import BottomWidget from '../widgets/BottomWidget.tsx';
 
 export function SavingsCalculatorPage() {
   return (
@@ -17,17 +16,7 @@ export function SavingsCalculatorPage() {
       <Border height={16} />
       <Spacing size={8} />
 
-      <Tab onChange={() => {}}>
-        <Tab.Item value="products" selected={true}>
-          적금 상품
-        </Tab.Item>
-        <Tab.Item value="results" selected={false}>
-          계산 결과
-        </Tab.Item>
-      </Tab>
-
-      <Products />
-      <Result />
+      <BottomWidget />
     </InputsProvider>
   );
 }
