@@ -1,44 +1,31 @@
 import { Assets, colors, ListRow } from 'tosslib';
 import { useData } from '../hooks/useData.tsx';
+import { getLocaleString } from '../utils/formatters.ts';
 
 function FilteredList() {
   const { data } = useData();
   if (!data) {
-    return <ListRow contents={<ListRow.Texts type="1RowTypeA" top="상품을 불러오는 중" />} />;
+    return <ListRow contents={<ListRow.Texts type="1RowTypeA" top="상품이 없습니다" />} />;
   }
-  return (
+  return data.map(product => (
     <>
       <ListRow
         contents={
           <ListRow.Texts
             type="3RowTypeA"
-            top={'기본 정기적금'}
+            top={product.name}
             topProps={{ fontSize: 16, fontWeight: 'bold', color: colors.grey900 }}
-            middle={'연 이자율: 3.2%'}
+            middle={`연 이자율: ${product.annualRate}%`}
             middleProps={{ fontSize: 14, color: colors.blue600, fontWeight: 'medium' }}
-            bottom={'100,000원 ~ 500,000원 | 12개월'}
+            bottom={`${getLocaleString(product.minMonthlyAmount)}원 ~ ${getLocaleString(product.maxMonthlyAmount)}원 | ${product.availableTerms}개월`}
             bottomProps={{ fontSize: 13, color: colors.grey600 }}
           />
         }
         right={<Assets.Icon name="icon-check-circle-green" />}
         onClick={() => {}}
       />
-      <ListRow
-        contents={
-          <ListRow.Texts
-            type="3RowTypeA"
-            top={'고급 정기적금'}
-            topProps={{ fontSize: 16, fontWeight: 'bold', color: colors.grey900 }}
-            middle={'연 이자율: 2.8%'}
-            middleProps={{ fontSize: 14, color: colors.blue600, fontWeight: 'medium' }}
-            bottom={'50,000원 ~ 1,000,000원 | 24개월'}
-            bottomProps={{ fontSize: 13, color: colors.grey600 }}
-          />
-        }
-        onClick={() => {}}
-      />
     </>
-  );
+  ));
 }
 
 export default FilteredList;
