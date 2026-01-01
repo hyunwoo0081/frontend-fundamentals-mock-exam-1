@@ -8,6 +8,10 @@ function CalcResult() {
   const { targetAmount, monthlyDeposit, savingPeriod } = useInputs();
   const { selectedProduct } = useSelectedProduct();
 
+  if (!selectedProduct) {
+    return <ListRow contents={<ListRow.Texts type="1RowTypeA" top="상품을 선택해주세요." />} />;
+  }
+
   const expectedEarnings = expectProfit(toNumber(monthlyDeposit), savingPeriod, selectedProduct?.annualRate ?? 0);
   const difference = differenceAmount(toNumber(targetAmount), expectedEarnings);
   const recommendedDeposit = recommendedMonthlyDeposit(
