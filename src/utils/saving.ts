@@ -3,7 +3,7 @@ export function expectProfit(monthlyDeposit: number, periodMonths: number, annua
   const monthlyInterestRate = 1 + annualInterestRate / 100;
   const maturityAmount = monthlyDeposit * periodMonths * monthlyInterestRate;
 
-  return Math.floor(maturityAmount * 0.5);
+  return Math.floor(maturityAmount + 0.5);
 }
 
 export function differenceAmount(initialAmount: number, finalAmount: number): number {
