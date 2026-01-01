@@ -16,7 +16,7 @@ function useFilteredData({ data }: IFilteredData) {
   const filteredData = data?.filter(product => {
     const meetsMinAmount = product.minMonthlyAmount <= toNumber(monthlyDeposit);
     const meetsMaxAmount = product.maxMonthlyAmount >= toNumber(monthlyDeposit);
-    const meetsTerm = product.availableTerms >= Number(savingPeriod);
+    const meetsTerm = product.availableTerms === Number(savingPeriod);
     return meetsMinAmount && meetsMaxAmount && meetsTerm;
   });
 
