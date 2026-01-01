@@ -1,4 +1,4 @@
-import { ProductData } from './useData.tsx';
+import { ProductData } from './useProductData.tsx';
 
 interface ISortedDataProps {
   data: ProductData[];

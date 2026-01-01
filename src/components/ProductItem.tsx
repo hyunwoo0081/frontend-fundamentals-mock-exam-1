@@ -1,5 +1,5 @@
 import { Assets, colors, ListRow } from 'tosslib';
-import { ProductData } from '../hooks/useData.tsx';
+import { ProductData } from '../hooks/useProductData.tsx';
 import { getLocaleString } from '../utils/formatters.ts';
 import { useSelectedProduct } from '../hooks/SelectedProductContext.tsx';
 

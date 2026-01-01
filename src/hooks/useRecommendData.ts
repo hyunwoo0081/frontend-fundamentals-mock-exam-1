@@ -1,4 +1,4 @@
-import { ProductData } from './useData.tsx';
+import { ProductData } from './useProductData.tsx';
 import useSortedData from './useSortedData.ts';
 import useFilteredData from './useFilteredData.ts';
 

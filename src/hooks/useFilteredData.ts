@@ -1,4 +1,4 @@
-import { ProductData } from './useData.tsx';
+import { ProductData } from './useProductData.tsx';
 import { useInputs } from './InputsContext.tsx';
 import { toNumber } from '../utils/formatters.ts';
 

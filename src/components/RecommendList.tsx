@@ -1,10 +1,10 @@
 import { ListRow } from 'tosslib';
-import { useData } from '../hooks/useData.tsx';
+import { useProductData } from '../hooks/useProductData.tsx';
 import ProductItem from './ProductItem.tsx';
 import useRecommendData from '../hooks/useRecommendData.ts';
 
 function RecommendList() {
-  const { data } = useRecommendData(useData());
+  const { data } = useRecommendData(useProductData());
 
   if (!data || !data.length) {
     return <ListRow contents={<ListRow.Texts type="1RowTypeA" top="상품이 없습니다" />} />;

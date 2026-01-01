@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, ReactNode } from 'react';
-import { ProductData } from './useData.tsx';
+import { ProductData } from './useProductData.tsx';
 
 interface SelectedProductContextType {
   selectedProduct: ProductData|null;

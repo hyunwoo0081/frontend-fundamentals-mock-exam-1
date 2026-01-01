@@ -9,7 +9,7 @@ export interface ProductData {
   name: string;
 }
 
-export function useData() {
+export function useProductData() {
   return useSuspenseQuery({
     queryKey: ['data'],
     queryFn: async (): Promise<ProductData[]> => {
