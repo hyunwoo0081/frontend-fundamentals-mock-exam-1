@@ -1,41 +1,27 @@
 import { createContext, useState, useContext, ReactNode } from 'react';
-
-interface ProductId {
-  id: string;
-}
+import { ProductData } from './useData.tsx';
 
 interface SelectedProductContextType {
-  selectedProduct: ProductId[];
-  addSelectedProduct: (productId: string) => void;
-  removeSelectedProduct: (productId: string) => void;
-  toggleSelectedProduct: (productId: string) => void;
+  selectedProduct: ProductData|null;
+  setSelectedProduct: (product: ProductData) => void;
 }
 
 const SelectedProductContext = createContext<SelectedProductContextType | null>(null);
 
 export function SelectedProductProvider({ children }: { children: ReactNode }) {
-  const [selectedProduct, setSelectedProduct] = useState<ProductId[]>([]);
+  const [selectedProduct, setSelectedProd] = useState<ProductData | null>(null);
 
-  const addSelectedProduct = (productId: string) => {
-    setSelectedProduct(prev => Array.from(new Set([...prev, { id: productId }])));
-  };
-
-  const removeSelectedProduct = (productId: string) => {
-    setSelectedProduct(prev => prev.filter(product => product.id !== productId));
-  };
-
-  const toggleSelectedProduct = (productId: string) => {
-    if (selectedProduct.some(product => product.id === productId)) {
-      removeSelectedProduct(productId);
-    } else {
-      addSelectedProduct(productId);
-    }
+  const setSelectedProduct = (product: ProductData) => {
+    setSelectedProd(prev => {
+      if (prev && prev.id === product.id) {
+        return null; // Deselect if the same product is selected
+      }
+      return product;
+    });
   };
 
   return (
-    <SelectedProductContext.Provider
-      value={{ selectedProduct, addSelectedProduct, removeSelectedProduct, toggleSelectedProduct }}
-    >
+    <SelectedProductContext.Provider value={{ selectedProduct, setSelectedProduct }}>
       {children}
     </SelectedProductContext.Provider>
   );
