@@ -1,6 +1,6 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-interface ProductData {
+export interface ProductData {
   annualRate: number;
   availableTerms: number;
   id: string;

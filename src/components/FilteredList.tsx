@@ -2,11 +2,13 @@ import { Assets, colors, ListRow } from 'tosslib';
 import { useData } from '../hooks/useData.tsx';
 import { getLocaleString } from '../utils/formatters.ts';
 import { useSelectedProduct } from '../hooks/SelectedProductContext.tsx';
+import useFilteredData from '../hooks/useFilteredData.ts';
+import useSortedData from '../hooks/useSortedData.ts';
 
 function FilteredList() {
-  const { data } = useData();
+  const { data } = useSortedData(useFilteredData(useData()));
   const { selectedProduct, toggleSelectedProduct } = useSelectedProduct();
-  if (!data) {
+  if (!data || !data.length) {
     return <ListRow contents={<ListRow.Texts type="1RowTypeA" top="상품이 없습니다" />} />;
   }
   return data.map(product => (
